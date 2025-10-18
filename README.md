@@ -76,3 +76,10 @@ Issues and pull requests are welcome. Feel free to suggest improvements, new fea
 ---
 
 Enjoy the cat facts! 😺
+
+---
+
+## Original Prompt
+> “This is a default android project. I need you to fully write an app that fetches a cat fact from this API https://catfact.ninja/ and displays it in the UI. Add a button to fetch a new cat fact. Make it using the latest trends in Android Architecture. And make it testable.”
+
+The starting point was an Android Studio “Empty Activity” template; everything else was generated collaboratively with Codex (GPT-5).
