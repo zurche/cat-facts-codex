@@ -19,6 +19,46 @@ Cat Facts Codex is a minimalist Android application that showcases a modern, tes
 - OkHttp with logging interceptor
 
 ## Architecture
+```mermaid
+flowchart TD
+    subgraph UI["UI Layer (Jetpack Compose)"]
+        CatFactScreen["CatFactScreen"]
+    end
+
+    subgraph Presentation["Presentation Layer"]
+        CatFactViewModel["CatFactViewModel\n(StateFlow + Coroutines)"]
+    end
+
+    subgraph Domain["Domain Layer"]
+        CatFactRepository["CatFactRepository\n(Interface)"]
+    end
+
+    subgraph Data["Data Layer"]
+        CatFactRepositoryImpl["CatFactRepositoryImpl"]
+        CatFactApiService["CatFactApiService"]
+        CatFactDto["CatFactDto"]
+    end
+
+    subgraph Platform["Platform Services"]
+        Retrofit["Retrofit + OkHttp"]
+        CatFactApi["catfact.ninja API"]
+    end
+
+    AppContainer["DefaultAppContainer\n(Dependency Provider)"]
+    App["CatFactsApplication"]
+
+    CatFactScreen -->|collects state| CatFactViewModel
+    CatFactViewModel -->|calls| CatFactRepository
+    CatFactRepository -->|implemented by| CatFactRepositoryImpl
+    CatFactRepositoryImpl -->|requests| CatFactApiService
+    CatFactApiService -->|parses| CatFactDto
+    CatFactApiService --> Retrofit --> CatFactApi
+
+    AppContainer -->|provides| CatFactRepositoryImpl
+    App -->|exposes| AppContainer
+    CatFactViewModel -->|obtains deps from| AppContainer
+```
+
 ```
 app/
 ├── data/              # Retrofit service + repository implementation
