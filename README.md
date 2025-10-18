@@ -2,6 +2,8 @@
 
 Cat Facts Codex is a minimalist Android application that showcases a modern, testable Compose stack. It fetches random cat facts from the public [`catfact.ninja`](https://catfact.ninja/) API and lets you request fresh facts on demand.
 
+> Built 100% by Codex using GPT-5.
+
 ## Features
 - Material 3 UI built entirely with Jetpack Compose.
 - MVVM presentation layer backed by Kotlin coroutines and StateFlow.
